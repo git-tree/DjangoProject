@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'static.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>编辑倒计时</title>
+</head>
+<body>
+{% block static %}
+    <div class="wrapper wrapper-content ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <form class="form-horizontal m-t" id="editform">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ data.id }}" id="id" name="id">
+                            <input type="hidden" value="{{ data.pid }}" id="pid" name="pid">
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label" for="downtxt">倒计时文本</label>
+                                <div class="col-sm-12">
+                                    <input id="downtxt" name="downtxt" class="form-control" type="text"
+                                           value="{{ data.downtxt }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-12 control-label" for="downdate">倒计时时间</label>
+                                <div class="col-sm-12">
+                                    <input id="downdate" name="downdate" class="form-control" type="text"
+                                           readonly="readonly" value="{{ data.downdate }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="c_downtxt">字体颜色</label>
+                                <div class="col-sm-8">
+                                    <div id="c_downtxt">
+                                    </div>
+                                    <input id="color_downtxt" name="color_downtxt" type="hidden"
+                                           value="{{ data.color_downtxt }}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="c_downdate">时间颜色</label>
+                                <div class="col-sm-8">
+                                    <div id="c_downdate"></div>
+                                    <input id="color_downdate" name="color_downdate" type="hidden"
+                                           value="{{ data.color_downdate }}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="c_downtxt">主题颜色</label>
+                                <div class="col-sm-8">
+                                    <div id="theme">
+                                    </div>
+                                    <input id="color_theme" name="color_theme" type="hidden"
+                                           value="{{ data.color_theme }}"/>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" onclick="updateDown()" class="btn btn-primary btn-block">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static '/js/edit_down.js' %}"></script>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+    <title>Title</title>
+    {% endblock %}
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.5.3-dist/css/bootstrap-table.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/layui/css/layui.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/layui/css/modules/laydate/default/laydate.css' %}">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+
+
+</head>
+<body>
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/jquery.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/bootstrap-table.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/bootstrap-table-zh-CN.min.js' %}"></script>
+<script src="{% static 'plugins/layui/layui.all.js' %}"></script>
+<script src="{% static 'plugins/layui/lay/modules/laydate.js' %}"></script>
+{% block static %}
+    父亲
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'static.html' %}
+<head>
+    <meta charset="UTF-8">
+    {% block title %}
+        <title>加班时长管理系统</title>
+    {% endblock %}
+</head>
+<body>
+{% load static %}
+{% block static %}
+    {#    <img id="bgimg" src="{% static 'images/g.gif' %}" width="100%" height="100%" style="z-index:-100;position:absolute;left:0;top:0">#}
+    <nav class="navbar navbar-expand-sm  navbar-dark fixed-top" id="nav">
+
+        <a class="navbar-brand " href="#" ondblclick="up_head()"><img id="user_photo" src="{% static '' %}" width="50"
+                                                                      height="50"
+                                                                      class="rounded-circle">&nbsp;欢迎你,
+            {% if request.session.id %}
+                <span class="badge badge-pill badge-success" id="test">{{ request.session.username }}</span>
+            {% else %}
+                <span class="badge badge-pill badge-danger">-_-!</span>
+            {% endif %}
+        </a>
+
+        {#    <div class="ml-auto">#}
+        <div class="">
+            <ul class="navbar-nav">
+                <!-- Dropdown -->
+                <li class="nav-item dropdown  ">
+                    <a class="nav-link dropdown-toggle fa fa-heart-o" href="#" id="navbardrop" data-toggle="dropdown">
+                        个人中心
+                    </a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item layui-icon layui-icon-username" href="#">修改个人信息</a>
+                        <a class="dropdown-item layui-icon layui-icon-password" href="#">修改密码</a>
+                        <a class="dropdown-item layui-icon layui-icon-logout" href="#" onclick="logout()">退出登录</a>
+                        <input type="hidden" value="" id="useremail">
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="ml-auto" style="margin-right: 15px;" id="daojishi">
+
+        </div>
+    </nav>
+    <div class="wrapper wrapper-content">
+        <div class="col-sm-12">
+
+
+            <div class="container-fluid" style="margin-top:90px;">
+
+                {#{{ msg }}#}
+            </div>
+            <div class="fixed-table-toolbar" style="margin-top:50px">
+                <div class="columns pull-left">
+                    <button type="button" class="btn btn-outline-danger layui-icon layui-icon-more-vertical"
+                            onclick="batchRemove()">
+                        批量删除
+                    </button>
+                    {#                    <button class="btn btn-outline-primary layui-icon layui-icon-survey" id="nowweekhours"#}
+                    {#                            onclick="sendemail()"#}
+                    {#                            title="发送截止当前时间，当前周的加班时长">#}
+                    {#                        本周加班时长#}
+                    {#                    </button>#}
+                    <div class="layui-inline">
+
+                        <form class="layui-form form-inline " id="signupForm">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="begintime">开始:</label>
+                                <div class="col-sm-8">
+                                    <input required lay-verify="required" type="text" class="form-control"
+                                           id="begintime"
+                                           name="begintime" placeholder="选择开始时间"
+                                           readonly="readonly">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label" for="endtime">结束:</label>
+                                <div class="col-sm-8">
+                                    <input required lay-verify="required" type="text" class="form-control" id="endtime"
+                                           name="endtime"
+                                           placeholder="选择结束时间"
+                                           readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group " style="margin-left: 20px">
+                                <label class="col-sm-3 control-label" for="btn"></label>
+                                <div class="col-sm-9">
+                                    <button class="btn btn-outline-primary  " lay-submit
+                                            lay-filter="formDemo"
+                                            id="btn"
+                                            onclick="" value="提交">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-input-inline">
+                        <input type="text" class="layui-input" id="year" name="year" placeholder="年份"
+                               readonly="readonly" style="width: 130px">
+                    </div>
+                    <div class="layui-input-inline">
+                        <input onchange="changeweek()" type="number" class="layui-input" id="week" name="week" min="1"
+                               max="53" step="1" placeholder="请输入周" style="width: 130px">
+                    </div>
+                    <button id="searchweek" type="button" class="btn btn-outline-info" onclick="reLoad()"
+                            onmouseover="tipnowWeek()">查询
+                    </button>
+                    <button id="sendemail_search" type="button" class="btn btn-outline-info"
+                            onclick="sendsearchEmail()">发送搜索周时长到邮件
+                    </button>
+                    <div style="margin:5px  0px">
+                        <div class="layui-input-inline">
+                            <input type="text" class="layui-input" id="year_email" name="year_email" placeholder="年份"
+                                   readonly="readonly" style="width: 130px">
+                        </div>
+                        <div class="layui-input-inline">
+                            <select name="month" id="month" class="form-control">
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <button class="btn btn-outline-primary" id="summonthhour"
+                                    onclick="summonthhour()"
+                                    title="">
+                                月加班总时间
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <table id="tb"></table>
+        </div>
+    </div>
+    <script src="{% static 'js/main.js' %}"></script>
+{% endblock %}
+</body>
+</html>

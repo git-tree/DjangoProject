@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+<div id="test">
+    <span v-bind:title="msg">
+        悬浮一会！
+    </span>
+    <p v-if="seen">你看到我吗?</p>
+</div>
+
+<div id="rever">
+<p>{{ reverstr }}</p>
+<button v-on:click="rever">反转</button>
+    </div>
+<hr/>
+
+<div id="model">
+    <p>{{ msg }}</p>
+    <input v-model="msg">
+</div>
+<hr/>
+
+<div id="">
+
+</div>
+<script type="text/javascript">
+    var v=new Vue({
+        el:"#rever",
+        data:{
+            msg:'页面加载于'+new Date().toLocaleString()+'',
+            seen:false,
+            reverstr:"今天我很高兴"
+        },
+        methods:{
+            rever:function(){
+                this.reverstr=this.reverstr.split("").reverse().join("")
+            }
+        }
+    });
+
+    var model=new Vue({
+        el:"#model",
+        data:{
+            msg:"你好"
+        },
+        methods:{
+
+        }
+    });
+
+    var v3=new Vue({
+        el:"#",
+        data:{
+
+        },
+        methods:{
+
+        }
+    });
+</script>
+</body>
+</html>

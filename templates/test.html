@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/statics/plugins/bootstrap-4.5.3-dist/css/bootstrap.css">
+</head>
+<body>
+{% load my_tags %}
+{% load static %}
+
+
+原数据:{{ dict }}<br>
+{{ dict.name }}<br>
+{{ dict.name|upper }}<br>
+{{ dict.name|default:'崔' }}<br>
+{{ dict.name|length }}<br>
+{#{{ dict|filesizeformat }}#}
+{{ dict|safe }}<br>
+{% if dict > 80 and dict < 100 %}
+优秀
+{% elif dict > 60 and dict < 80%}
+及格
+{% else %}
+不及格
+{% endif %}<br>
+<ul>
+{% for i in dict reversed %}
+    <li>{{ i }}</li>
+{% endfor %}
+</ul>
+{% my_tag1 1 2 3  %}<br>
+{% my_html "ids" "names" %}
+<br>
+{{ name }}<img src="{% static "images/1.jpg" %}" width="200" height="200">
+同步码云
+</body>
+</html>

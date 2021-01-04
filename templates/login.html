@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'static.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% block title %}
+    <title>登陆</title>
+    {% endblock %}
+{% block static %}
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-4.5.3-dist/css/bootstrap.min.css' %}">
+</head>
+{#<body background="{% static 'images/bg.jpg' %}">#}
+<body background="{% static 'images/t.jpg' %}">
+{#<body background="{% static 'images/w.jpg' %}">#}
+{#<body background="{% static 'images/gril.png' %}">#}
+
+
+{#<body>#}
+{#{% load static %}#}
+<div id="canvas-cont"></div>
+<form role="form" method="post" class="layui-form">
+    {% csrf_token %}
+    <div class="content-div">
+
+        <!---圆角框-->
+{#        <p class="line"></p>#}
+
+        <!--欢迎词-->
+{#        <p class="welcome bg-dark text-white"  >欢迎登陆</p>#}
+        <div class="form-group">
+            <div class="flex borderBox item">
+                <img src="{% static 'images/user.png' %}" alt="">
+                <input type="text" id="username" name="username" value="" placeholder="用户名" class="form-control" required  lay-verify="required">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="flex borderBox item">
+                <img src="{% static 'images/pass.png' %}" alt="">
+                <input type="password" id="password" name="password" value="" placeholder="密码" class="form-control" required  lay-verify="required">
+            </div>
+        </div>
+        {#        <p class="btn">登陆</p>#}
+        <div class="form-group text-right ">
+            <a class="text-info" href="#" onclick="regist_user()">用户注册</a>
+        </div>
+        <div class="form-group">
+            <button class="btn btn-outline-primary layui-btn-fluid" lay-submit lay-filter="formDemo"  >登陆</button>
+        </div>
+        <div class="form-group">
+            <div style="text-align: center;font-size: larger"><span class="badge badge-pill badge-danger " >{{ tips }}</span></div>
+        </div>
+
+
+    </div>
+</form>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'js/canvas-particle.js' %}"></script>
+<script src="{% static 'js/login.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/jquery.min.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-4.5.3-dist/js/bootstrap.min.js' %}"></script>
+{% endblock %}
+</body>
+</html>

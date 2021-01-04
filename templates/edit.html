@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'static.html' %}
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block static %}
+    <div class="wrapper wrapper-content ">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="ibox float-e-margins">
+                    <div class="ibox-content">
+                        <form class="form-horizontal m-t" id="editform">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ data.id }}" id="id" name="id">
+                            <input type="hidden" value="{{ data.pid }}" id="pid" name="pid">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="begintime">开始时间</label>
+                                <div class="col-sm-8">
+                                    <input id="begintime" name="begintime" class="form-control" type="text"
+                                           readonly="readonly" value="{{ data.begintime }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="endtime">结束时间</label>
+                                <div class="col-sm-8">
+                                    <input id="endtime" name="endtime" class="form-control" type="text"
+                                           readonly="readonly" value="{{ data.endtime }}">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="year">年份</label>
+                                <div class="col-sm-8">
+                                    <input id="year" name="year" class="form-control" type="text"
+                                           value="{{ data.year }}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="month">月份</label>
+                                <div class="col-sm-8">
+                                    <input id="month" name="month" class="form-control" type="text"
+                                           value="{{ data.month }}" readonly="readonly">
+                                </div>
+                            </div>
+                              <div class="form-group">
+                                <label class="col-sm-3 control-label" for="week">第几周</label>
+                                <div class="col-sm-8">
+                                    <input id="week" name="week" class="form-control" type="number" min="1" step="1"
+                                           max="52" value="{{ data.week }}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="day">周几</label>
+                                <div class="col-sm-8">
+                                    <input id="day" name="day" class="form-control" type="text" value="{{ data.day }}"
+                                           readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label" for="hours">加班小时</label>
+                                <div class="col-sm-8">
+                                    <input id="hours" name="hours" class="form-control" type="number" min="0.00"
+                                           step="0.01" max="6" value="{{ data.hours }}" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-sm-12">
+                                    <button type="button" onclick="upDate()" class="btn btn-primary btn-block">提交
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{% static 'js/edit.js' %}"></script>
+{% endblock %}
+</body>
+</html>
