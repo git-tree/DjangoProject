@@ -361,9 +361,7 @@ def update(request):
             hours='%.2f'%hours
 
             # 一年的第几周
-            year_week_sql='''
-            SELECT WEEK('%s',1)
-            '''%begintime
+            year_week_sql="SELECT WEEK('%s',1)"%begintime
             year_week= executesql(year_week_sql)[0]
             # week=request.POST.get('week')
             # day=request.POST.get('day')
