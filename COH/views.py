@@ -371,9 +371,7 @@ def update(request):
             # 周几
             day=formartweek(executesql(week_sql)[0])
             # 月份
-            month_sql='''
-            SELECT MONTH('%s')
-            '''%begintime
+            month_sql="SELECT MONTH('%s')"%begintime
             month=executesql(month_sql)[0]
             # 年份year
             year=dateStr2Date(begintime).year
