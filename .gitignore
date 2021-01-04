@@ -62,7 +62,7 @@ fabric.properties
 .idea/httpRequests
 
 #忽略设置文件
-DjangoProject/settings.py
 DjangoProject/__pycache__/__init__.cpython-37.pyc
 DjangoProject/__pycache__/urls.cpython-37.pyc
 DjangoProject/__pycache__/wsgi.cpython-37.pyc
+/DjangoProject/settings.py
