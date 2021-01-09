@@ -86,7 +86,10 @@ function loaddatetime() {
             type: 'datetime',
             theme: '#393D49',
             calendar: true,
-            value: now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
+            //value: now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
+             value: now.getDay()==6?now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "13:00:00":
+             now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
+
         });
         laydate.render({
             elem: '#endtime', //指定元素
