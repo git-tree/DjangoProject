@@ -673,4 +673,4 @@ def save_user_photo(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 def upuserInfo(request):
-    return render(request,'edit_userInfo/edit_user_photo.html')
+    return render(request, 'edit_userInfo/edit_user_info.html')
