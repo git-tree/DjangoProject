@@ -472,7 +472,7 @@ function loadSelectMonth() {
 }
 function summonthhour() {
     month = $("#month").val();
-    year =$("#year_email").val()
+    year =$("#year_email").val();
     if (month == "") {
         //alert(month);
         layer.tips('请选择月份', '#month', {
@@ -513,5 +513,16 @@ function summonthhour() {
                 //reLoad()
             }
         }
+    });
+}
+function upuserInfo(){
+    layer.open({
+        type: 2,
+        title: '修改个人信息',
+        maxmin: true,
+        shadeClose: false, // 点击遮罩关闭层
+        area: ['500px', '550px'],
+        //content: '/edit/' + id // iframe的url
+        content: ['/upuserInfo/', 'no']
     });
 }
