@@ -60,6 +60,8 @@ function getuserInfo() {
 
                 //邮箱
                 $("#useremail").val(f.email);
+                //姓名
+                $("#username").text(f.username);
 
             });
         }

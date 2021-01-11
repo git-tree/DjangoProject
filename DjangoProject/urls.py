@@ -53,7 +53,8 @@ urlpatterns = [
     path('editdown/',views.editdown),
     path('updateDown/',views.updateDown),
     path('sendsearchemail/',views.sendsearchemail),
-    path('upuserInfo/',views.upuserInfo)
+    path('upuserInfo/',views.upuserInfo),
+    path('update_userinfo/',views.update_userinfo)
 
 
 

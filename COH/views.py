@@ -673,4 +673,42 @@ def save_user_photo(request):
         return HttpResponse(json.dumps(data), content_type='application/json')
 
 def upuserInfo(request):
-    return render(request, 'edit_userInfo/edit_user_info.html')
+    '''
+    转发用户信息，编辑时用
+    :param request:
+    :return:
+    '''
+    pid=request.session.get("id")
+    user_mode=models.User.objects.filter(id=pid)
+    user_mode=serializers.serialize("json",user_mode)
+    # user=user['fields']
+    # print(type(user))
+    user_mode=json.loads(user_mode)
+    print(user_mode)
+    user=user_mode[0]['fields']
+    id=user_mode[0]['pk']
+    user['id']=id
+    user_list=['男','女','保密']
+    print(user)
+    return render(request, 'edit_userInfo/edit_user_info.html',{"user":user,"user_list":user_list})
+
+@csrf_exempt
+def update_userinfo(request):
+    '''
+    更新用户信息
+    :param request:
+    :return:
+    '''
+    id=request.POST.get('id')
+    username=request.POST.get('username')
+    email=request.POST.get('email')
+    sex=request.POST.get('sex')
+    print(id,username,sex,email)
+    data={}
+    try:
+        models.User.objects.filter(id=id).update(username=username,sex=sex,email=email)
+        data['msg']="ok"
+    except:
+        data['msg']='更新失败！'
+    return HttpResponse(json.dumps(data), content_type='application/json')
+

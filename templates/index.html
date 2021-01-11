@@ -17,7 +17,7 @@
                                                                       height="50"
                                                                       class="rounded-circle">&nbsp;欢迎你,
             {% if request.session.id %}
-                <span class="badge badge-pill badge-success" id="test">{{ request.session.username }}</span>
+                <span class="badge badge-pill badge-success" id="test"><span id="username"></span></span>
             {% else %}
                 <span class="badge badge-pill badge-danger">-_-!</span>
             {% endif %}
