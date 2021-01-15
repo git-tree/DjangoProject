@@ -533,7 +533,6 @@ def summonthhouremail(request):
         # 获取邮箱
         try:
             toemail=request.GET.get('toemail')
-            print('toemail',toemail)
         except:
             data={'msg':'发送中出现异常，未知地址...'}
             return HttpResponse(json.dumps(data), content_type='application/json')
@@ -554,6 +553,10 @@ def summonthhouremail(request):
             data['msg']='ok'
             data['hour']=counthours_month
             data['hour_TX']=counthours_month_TX[0]
+            if data['hour'] is None :
+                data['hour']=0
+            if data['hour_TX'] is None:
+                data['hour_TX']=0
         except :
             data['msg']='查询出现异常'
         try:
