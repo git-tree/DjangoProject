@@ -475,16 +475,16 @@ function loadSelectMonth() {
 function summonthhour() {
     month = $("#month").val();
     year =$("#year_email").val();
-    if (month == "") {
+          if (year == "") {
         //alert(month);
-        layer.tips('请选择月份', '#month', {
+        layer.tips('请选择年份', '#year_email', {
             tips: 3
         });
         return;
     }
-      if (year == "") {
+    if (month == "") {
         //alert(month);
-        layer.tips('请选择年份', '#year_email', {
+        layer.tips('请选择月份', '#month', {
             tips: 3
         });
         return;
@@ -527,4 +527,47 @@ function upuserInfo(){
         //content: '/edit/' + id // iframe的url
         content: ['/upuserInfo/', 'no']
     });
+}
+function summonthhour_email(){
+    month = $("#month").val();
+    year =$("#year_email").val();
+    toemail = $("#useremail").val();
+    if (year == "") {
+        //alert(month);
+        layer.tips('请选择年份', '#year_email', {
+            tips: 3
+        });
+        return;
+    }
+    if (month == "") {
+        //alert(month);
+        layer.tips('请选择月份', '#month', {
+            tips: 3
+        });
+        return;
+    }
+layer.confirm('是否确认发送'+year+'年第' + month + '月加班时长邮件到' + toemail + '?', {
+        btn: ['确定', '取消']
+    }, function () {
+        $.ajax({
+            type: 'GET',
+            //traditional:true,// 传数组
+            data: {
+                'month': month,
+                'year':year,
+                'toemail': toemail,
+            },
+            url: '/summonthhouremail/',
+            success: function (data) {
+                if (data['msg'] == 'ok') {
+                    layer.msg('发送成功', {icon: 1});
+                    //reLoad();
+                } else {
+                    layer.msg(data['msg']);
+                    //reLoad()
+                }
+            }
+        });
+        //window.location.href='/sendemail/'
+    })
 }

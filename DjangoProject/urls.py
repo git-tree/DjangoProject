@@ -54,7 +54,8 @@ urlpatterns = [
     path('updateDown/',views.updateDown),
     path('sendsearchemail/',views.sendsearchemail),
     path('upuserInfo/',views.upuserInfo),
-    path('update_userinfo/',views.update_userinfo)
+    path('update_userinfo/',views.update_userinfo),
+    path('summonthhouremail/',views.summonthhouremail)
 
 
 

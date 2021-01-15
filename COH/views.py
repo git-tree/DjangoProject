@@ -522,6 +522,52 @@ def sendsearchemail(request):
     except:
         data={'msg':'发送失败!'}
     return HttpResponse(json.dumps(data), content_type='application/json')
+
+def summonthhouremail(request):
+    '''
+    发送月度邮件
+    :return:
+    '''
+    if request.method=='GET':
+        print('aaaaaa')
+        # 获取邮箱
+        try:
+            toemail=request.GET.get('toemail')
+            print('toemail',toemail)
+        except:
+            data={'msg':'发送中出现异常，未知地址...'}
+            return HttpResponse(json.dumps(data), content_type='application/json')
+        data={}
+        year=request.GET.get("year")
+        month=request.GET.get("month")
+        # print('month',month,year)
+        pid=request.session.get("id")
+        # print('pidss',pid)
+        sql='SELECT SUM(hours) FROM coh_overtime WHERE pid=%d AND month=%d AND year=%s'%(int(pid),int(month),int(year))
+        # print('sqlresult',executesql(sql))
+        sql_TX='SELECT SUM(hours) FROM coh_overtime WHERE pid=%d AND month=%d AND year=%s and day="周六"'%(int(pid),int(month),int(year))
+        try:
+            counthours_month=executesql(sql)[0]
+
+            counthours_month_TX=executesql(sql_TX)
+
+            data['msg']='ok'
+            data['hour']=counthours_month
+            data['hour_TX']=counthours_month_TX[0]
+        except :
+            data['msg']='查询出现异常'
+        try:
+            send_mail(
+                    '%s年%s月加班时长'%(year,month),
+                    '%s年%s月加班时长为:%s小时\n其中调休假%s小时,普通加班%s小时。'%(year,month,data['hour'],data['hour_TX'],(data['hour']-data['hour_TX'])),
+                    'shusen.cui@tinno.com',
+                    ['%s'%toemail],
+            )
+            data={'msg':'发送邮件成功，请注意查收!'}
+        except:
+            data={'msg':'发送失败!'}
+        return HttpResponse(json.dumps(data), content_type='application/json')
+
 def summonthhour(request):
     """
     查询指定月的总共加班小时
