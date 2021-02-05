@@ -89,8 +89,8 @@ function loaddatetime() {
             theme: '#393D49',
             calendar: true,
             //value: now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
-             value: now.getDay()==6?now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "13:00:00":
-             now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
+            value: now.getDay() == 6 ? now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "13:00:00" :
+            now.getFullYear() + "-" + (now.getMonth() + 1) + "-" + now.getDate() + " " + "18:00:00"
 
         });
         laydate.render({
@@ -105,13 +105,13 @@ function loaddatetime() {
         laydate.render({
             elem: '#year'
             , type: 'year',
-            value:now,
+            value: now,
             theme: '#393D49',
         });
         laydate.render({
             elem: '#year_email'
             , type: 'year',
-            value:now,
+            value: now,
             theme: '#393D49',
         });
     });
@@ -146,7 +146,7 @@ function load() {
                         rows: params.limit,                         //页面大小
                         page: (params.offset / params.limit) + 1,   //页码
                         week: $("#week").val() == '' ? loadNowWeek() : $("#week").val(),
-                        year:$("#year").val()==''?new Date().getFullYear():$("#year").val(),
+                        year: $("#year").val() == '' ? new Date().getFullYear() : $("#year").val(),
                         //companyName:$('#companyName').val(),
                         //companySocialCreditCode:$('#companySocialCreditCode').val()
                     };
@@ -174,23 +174,14 @@ function load() {
                         title: '年份'
                     },
                     {
-                        field: 'begintime',
-                        title: '开始时间'
+                        field: 'month',
+                        title: '月份'
                     },
-                    {
-                        field: 'endtime',
-                        title: '结束时间'
-                    }
-                    ,
+
                     {
                         field: 'week',
                         title: '第几周'
-                    }
-                    //{
-                    //    field: 'pid',
-                    //    title: '父id'
-                    //},
-                    ,
+                    },
                     {
                         field: 'day',
                         title: '周几',
@@ -202,6 +193,21 @@ function load() {
                         }
                     },
                     {
+                        field: 'begintime',
+                        title: '开始时间'
+                    },
+                    {
+                        field: 'endtime',
+                        title: '结束时间'
+                    }
+
+                    //{
+                    //    field: 'pid',
+                    //    title: '父id'
+                    //},
+                    ,
+
+                    {
                         field: 'hours',
                         title: '加班小时数',
                         formatter: function (value, row, index) {
@@ -212,10 +218,6 @@ function load() {
                         }
                     }
                     ,
-                    {
-                        field: 'month',
-                        title: '月份'
-                    },
                     {
                         title: '操作',
                         field: 'id',
@@ -423,8 +425,8 @@ function tipnowWeek() {
 function sendsearchEmail() {
     toemail = $("#useremail").val();
     var week = $("#week").val();
-    var year=$("#year").val();
-    layer.confirm('是否确认发送'+year+'年第' + week + '周加班时长邮件到' + toemail + '?', {
+    var year = $("#year").val();
+    layer.confirm('是否确认发送' + year + '年第' + week + '周加班时长邮件到' + toemail + '?', {
         btn: ['确定', '取消']
     }, function () {
         $.ajax({
@@ -432,7 +434,7 @@ function sendsearchEmail() {
             //traditional:true,// 传数组
             data: {
                 'week': week,
-                year:year,
+                year: year,
                 toemail: toemail,
             },
             url: '/sendsearchemail/',
@@ -474,8 +476,8 @@ function loadSelectMonth() {
 }
 function summonthhour() {
     month = $("#month").val();
-    year =$("#year_email").val();
-          if (year == "") {
+    year = $("#year_email").val();
+    if (year == "") {
         //alert(month);
         layer.tips('请选择年份', '#year_email', {
             tips: 3
@@ -494,7 +496,7 @@ function summonthhour() {
         //traditional:true,// 传数组
         data: {
             'month': month,
-            'year':year
+            'year': year
         },
         url: '/summonthhour/',
         success: function (data) {
@@ -517,7 +519,7 @@ function summonthhour() {
         }
     });
 }
-function upuserInfo(){
+function upuserInfo() {
     layer.open({
         type: 2,
         title: '修改个人信息',
@@ -528,9 +530,9 @@ function upuserInfo(){
         content: ['/upuserInfo/', 'no']
     });
 }
-function summonthhour_email(){
+function summonthhour_email() {
     month = $("#month").val();
-    year =$("#year_email").val();
+    year = $("#year_email").val();
     toemail = $("#useremail").val();
     if (year == "") {
         //alert(month);
@@ -546,7 +548,7 @@ function summonthhour_email(){
         });
         return;
     }
-layer.confirm('是否确认发送'+year+'年第' + month + '月加班时长邮件到' + toemail + '?', {
+    layer.confirm('是否确认发送' + year + '年第' + month + '月加班时长邮件到' + toemail + '?', {
         btn: ['确定', '取消']
     }, function () {
         $.ajax({
@@ -554,7 +556,7 @@ layer.confirm('是否确认发送'+year+'年第' + month + '月加班时长邮�
             //traditional:true,// 传数组
             data: {
                 'month': month,
-                'year':year,
+                'year': year,
                 'toemail': toemail,
             },
             url: '/summonthhouremail/',
